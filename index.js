@@ -1,116 +1,132 @@
-const steps = ["3", "header", "8", "12", "footer", "5"];
+const steps = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+];
 let index = 0;
 
-// helper function
-const highlight = (id) => {
-  // remove the existing highlighted elements
+const stepContents = {
+  1: "This is the first Tab. It contains important information.",
+  2: "Tab 2: Features description.",
+  // ... Add content for other blocks
+};
+
+function highlight(id) {
+  // Remove the existing highlighted elements
   document.getElementById("lb-highlight")?.remove();
   document.getElementById("lb-popover")?.remove();
-  
-  // get the element with the ID
+
+  // Get the element with the ID
   const element = document.getElementById(id);
 
-  // get the element dimension 
+  // Get the element dimension
   const elementDimension = element.getBoundingClientRect();
 
-  // highlight the element
+  // Highlight the element
   highlightHelper(elementDimension);
 
-  // add the popover with navigation button
-  popover(elementDimension);
+  // Add the popover with navigation buttons
+  popover(elementDimension, id);
 }
 
-const highlightHelper = (elementDimension) => {
-  // calculate the css poisition 
-  // where the highlighter will be placed
+function highlightHelper(elementDimension) {
+  // Calculate the CSS position where the highlighter will be placed
   let top = elementDimension.top + window.scrollY;
   let left = elementDimension.left + window.scrollX;
   let width = elementDimension.width;
   let height = elementDimension.height;
-  
-  // create a new element with an id
-  // and add a style to it
-  const ele = document.createElement('div');
+
+  // Create a new element with an ID and add style to it
+  const ele = document.createElement("div");
   ele.id = "lb-highlight";
-  ele.style=`
-    position: absolute;
-    top: ${top - 4}px;
-    left: ${left - 4}px;
-    width: ${width}px;
-    height: ${height}px;
-    transition: border .2s ease;
-  `;
-  
-  // append the element to the parent
-  document.getElementById("wrapper").appendChild(ele);
-  
-  // add the border style late to take an effect
+  ele.style = `
+                position: absolute;
+                top: ${top - 4}px;
+                left: ${left - 4}px;
+                width: ${width}px;
+                height: ${height}px;
+                transition: border .2s ease, opacity .2s ease;
+            `;
+
+  // Append the element to the parent
+  document.getElementById("container").appendChild(ele);
+
+  // Add the border style late to take effect
   setTimeout(() => {
     ele.style.border = "4px solid #000";
   }, 0);
 }
 
-const popover = (elementDimension) => {
-  // calculate the css poisition 
-  // where the highlighter will be placed
+function popover(elementDimension, id) {
+  // Calculate the CSS position where the popover will be placed
   let bottom = elementDimension.bottom + window.scrollY;
   let left = elementDimension.left + window.scrollX;
   let right = elementDimension.right;
-  
-  // create a new element with an id
-  // and add a style to it
+
+  // Create a new element with an ID and add style to it
   const ele = document.createElement("div");
   ele.id = "lb-popover";
   ele.style = `
-    position: absolute;
-    top: ${bottom + 5}px;
-    left: ${((left + right) / 2) - 50}px;
-    background: #fff;
-    width: 100px;
-    height: 100px;
-  `;
-  
-  // add the navigation button
-  ele.appendChild(navigationButton());
-  
-  // apend to the parent of the element
-  document.getElementById("wrapper").appendChild(ele);
+                position: absolute;
+                top: ${bottom + 5}px;
+                left: ${(left + right) / 2 - 50}px;
+                background: #fff;
+                padding: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            `;
+
+  // Add the navigation buttons
+  ele.appendChild(navigationButtons(id));
+
+  // Append to the parent of the element
+  document.getElementById("container").appendChild(ele);
 }
 
-const navigationButton = () => {
-  // create the next button with click event listener
-  const nextButton = document.createElement('button');
-  nextButton.textContent = "next";
-  nextButton.addEventListener('click', function(){
-    // move the next step
-    if(index < steps.length - 1){
-      highlight(steps[++index]);
+function navigationButtons(id) {
+  // Create the next button with click event listener
+  const nextButton = document.createElement("button");
+  nextButton.textContent = "Next";
+  nextButton.addEventListener("click", function () {
+    // Move to the next step
+    if (index < steps.length - 1) {
+      index++;
+      highlight(steps[index]);
     }
   });
-  
-  // create the previous button with click event listener
-  const prevButton = document.createElement('button');
-  prevButton.textContent = "prev";
-  prevButton.addEventListener('click', function(){
-    // move the prev step
-    if(index > 0){
-      highlight(steps[--index]);
+
+  // Create the previous button with click event listener
+  const prevButton = document.createElement("button");
+  prevButton.textContent = "Previous";
+  prevButton.addEventListener("click", function () {
+    // Move to the previous step
+    if (index > 0) {
+      index--;
+      highlight(steps[index]);
     }
   });
-  
-  // create a fragment and these two buttons to it
+
+  // Create a fragment and add these two buttons to it
   const fragment = document.createDocumentFragment();
   fragment.appendChild(prevButton);
   fragment.appendChild(nextButton);
-  
+
   return fragment;
 }
 
-// helper function to scroll to element smoothly
-const scrollTo = (element) => {
-  const eleTop = element.offsetTop;
-  window.scrollTo({top: eleTop, behavior: "smooth"});
-}
-
-// initiate first step
-highlight(steps[index]);s
+// Initiate the first step
+highlight(steps[index]);

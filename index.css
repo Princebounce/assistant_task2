@@ -1,0 +1,57 @@
+
+/* Add transition property for smooth highlighting */
+#lb-highlight {
+    position: absolute;
+    transition: border .2s ease, opacity .2s ease;
+}
+
+/* Style for the assistant popover */
+#lb-popover {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Style for the navigation buttons */
+.popover-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Your existing styles */
+.section {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fd7000;
+    margin-bottom: 5px;
+    font-size: 25px;
+}
+
+#wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.block {
+    flex: 0 350px;
+    width: 350px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background: #0aa3fc;
+    margin: 5px;
+    font-size: 40px;
+    color: #000;
+    position: relative;
+    cursor: pointer;
+}

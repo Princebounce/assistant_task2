@@ -31,13 +31,13 @@ function highlight(id) {
   document.getElementById("lb-highlight")?.remove();
   document.getElementById("lb-popover")?.remove();
 
-  // Get the element with the ID
+
   const element = document.getElementById(id);
 
-  // Get the element dimension
+
   const elementDimension = element.getBoundingClientRect();
 
-  // Highlight the element
+ 
   highlightHelper(elementDimension);
 
   // Add the popover with navigation buttons
@@ -51,7 +51,7 @@ function highlightHelper(elementDimension) {
   let width = elementDimension.width;
   let height = elementDimension.height;
 
-  // Create a new element with an ID and add style to it
+
   const ele = document.createElement("div");
   ele.id = "lb-highlight";
   ele.style = `
@@ -63,17 +63,17 @@ function highlightHelper(elementDimension) {
                 transition: border .2s ease, opacity .2s ease;
             `;
 
-  // Append the element to the parent
+
   document.getElementById("container").appendChild(ele);
 
-  // Add the border style late to take effect
+
   setTimeout(() => {
     ele.style.border = "4px solid #000";
   }, 0);
 }
 
 function popover(elementDimension, id) {
-  // Calculate the CSS position where the popover will be placed
+ 
   let bottom = elementDimension.bottom + window.scrollY;
   let left = elementDimension.left + window.scrollX;
   let right = elementDimension.right;
@@ -93,7 +93,7 @@ function popover(elementDimension, id) {
   // Add the navigation buttons
   ele.appendChild(navigationButtons(id));
 
-  // Append to the parent of the element
+t
   document.getElementById("container").appendChild(ele);
 }
 
@@ -102,25 +102,25 @@ function navigationButtons(id) {
   const nextButton = document.createElement("button");
   nextButton.textContent = "Next";
   nextButton.addEventListener("click", function () {
-    // Move to the next step
+  
     if (index < steps.length - 1) {
       index++;
       highlight(steps[index]);
     }
   });
 
-  // Create the previous button with click event listener
+
   const prevButton = document.createElement("button");
   prevButton.textContent = "Previous";
   prevButton.addEventListener("click", function () {
-    // Move to the previous step
+
     if (index > 0) {
       index--;
       highlight(steps[index]);
     }
   });
 
-  // Create a fragment and add these two buttons to it
+
   const fragment = document.createDocumentFragment();
   fragment.appendChild(prevButton);
   fragment.appendChild(nextButton);
@@ -128,5 +128,5 @@ function navigationButtons(id) {
   return fragment;
 }
 
-// Initiate the first step
+
 highlight(steps[index]);

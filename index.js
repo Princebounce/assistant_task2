@@ -66,6 +66,7 @@
             // Add the border style late to take effect
             setTimeout(() => {
                 ele.style.border = "4px solid #000";
+                ele.style.opacity = 1;
             }, 0);
         }
 
@@ -92,6 +93,10 @@
 
             // Append to the parent of the element
             document.getElementById("container").appendChild(ele);
+
+            setTimeout(() => {
+              ele.style.opacity = 1;
+          }, 0);
         }
 
         function navigationButtons(id) {

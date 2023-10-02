@@ -55,3 +55,23 @@
     position: relative;
     cursor: pointer;
 }
+
+
+#lb-highlight {
+    position: absolute;
+    transition: border .2s ease, opacity .2s ease;
+}
+
+
+#lb-popover {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: opacity .2s ease;
+    opacity: 0;
+}

@@ -4,8 +4,23 @@
 
         const stepContents = {
             "1": "This is the first block. It contains important information.",
-            "2": "Block 2: Features description.",
-            // ... Add content for other blocks
+            "2": "Tab 2: Features description.",
+            "3": "Tab 3: Features description.",
+            "4": "Tab 4: Features description.",
+            "5": "Tab 5: Features description.",
+            "6": "Tab 6: Features description.",
+            "7": "Tab 7: Features description.",
+            "8": "Tab 8: Features description.",
+            "9": "Tab 9: Features description.",
+            "10": "Tab 10: Features description.",
+            "11": "Tab 11: Features description.",
+            "12": "Tab 12: Features description.",
+            "13": "Tab 13: Features description.",
+            "14": "Tab 14: Features description.",
+            "15": "Tab 15: Features description.",
+            "16": "Tab 16: Features description.",
+            "17": "Tab 17: Features description.",
+            "18": "Tab 18: Features description.",
         };
 
         function highlight(id) {
